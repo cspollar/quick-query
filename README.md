@@ -6,11 +6,16 @@ Welcome to the Quick Query Chrome extension!
 
 Do you find yourself frequently typing search queries with specific keywords? The Quick Query extension is here to make your life easier! Now you can quickly configure and use URL templates to streamline your searches right from the omnibox.
 
+<img width="450" alt="image" src="https://github.com/user-attachments/assets/c0518df5-7c3e-4824-a165-61e767e94d0c">
+
 ## Usage Instructions
 
 After installing the extension, type `q` followed by a `keyword` and your `search term` in the address bar. If no keyword is entered, the default template is used.
 
-The keyword must match an existing URL template; the search term will replace `{KEY}` in the URL Template.
+The keyword must match an existing URL template; the search term will replace `{KEY}` in the URL Template. Click the extension in the top right corner to add/update URL templates.
+
+<img width="300" alt="screenshot" src="https://github.com/user-attachments/assets/5c0f270a-1b14-4c9b-a025-b5122a8ed945">
+
 
 ## Examples
 
