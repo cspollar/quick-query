@@ -1,26 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quick Query Settings</title>
-    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="../public/popup.css" />
   </head>
   <body>
-    <h2>Quick Query Settings</h2>
-    <a href="https://github.com/sponsors/cspollar" class="cute-github-sponsor-button" target="_blank">
-      ♥ Sponsor
-    </a>
+    <div class="heading">
+      <h1>Quick Query Settings</h1>
+      <a
+        href="https://github.com/sponsors/cspollar"
+        class="sponsor-button"
+        target="_blank"
+      >
+        ♥ Sponsor
+      </a>
+    </div>
     <details>
       <summary>Instructions</summary>
       <div class="details-content">
         <p>
-          To use the Quick Query extension, type <strong>q</strong> followed by
-          a keyword and your search term in the address bar. If no keyword is
-          entered, the search will use the default keyword.
+          To use the Quick Query extension, type <code>q</code> followed by a
+          <code>keyword</code> and your <code>search term</code> in the address
+          bar. If no keyword is entered, the default template is used.
         </p>
         <p>
-          The keyword must match an existing URL template; the search term will replace <code>{KEY}</code> in the URL Template.
+          The keyword must match an existing URL template; the search term will
+          replace <code>{KEY}</code> in the URL Template.
         </p>
         <h3>Examples</h3>
 
@@ -34,32 +41,24 @@
         <code>https://example.com?q={KEY}</code>
         <div>becomes</div>
         <code>https://example.com?q=<i>mySearchTerm</i></code>
-
-
       </div>
     </details>
 
     <div class="input-group">
       <label for="keyword">Keyword</label>
-      <input type="text" id="keyword" placeholder="example" value="" />
+      <input type="text" id="keyword" placeholder="example" />
     </div>
     <div class="input-group">
       <label for="url">URL Template</label>
-      <input
-        type="text"
-        id="url"
-        placeholder="https://example.com?q={KEY}"
-        value=""
-      />
+      <input type="text" id="url" placeholder="https://example.com?q={KEY}" />
     </div>
     <button id="addUrl">Add/Update URL</button>
 
     <h4>Current URLs</h4>
-    <div id="urlList">
-    </div>
+    <div id="urlList"></div>
     <div id="urlListPlaceholder">
-        No URLs added yet. Add your first URL above.
+      No URLs added yet. Add your first URL above.
     </div>
-    <script src="popup.js"></script>
+    <script src="../js/popup.js"></script>
   </body>
 </html>

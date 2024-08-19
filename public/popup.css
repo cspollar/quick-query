@@ -1,60 +1,115 @@
+:root {
+  --primary-color: #3498db;
+  --hover-color: #2980b9;
+  --default-bg: #f7f8fa;
+  --text-color: #333;
+  --placeholder-color: #7f8c8d;
+  --button-radius: 5px;
+  --border-radius: 5px;
+}
+
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #f7f8fa;
+  background-color: var(--default-bg);
   margin: 0;
   padding: 20px;
   width: 360px;
-  color: #333;
+  color: var(--text-color);
 }
-h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center content vertically in the flex container */
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 16px;
   color: #2c3e50;
+  line-height: 1.2; /* Reduce line-height to make the heading more compact */
+}
+
+.sponsor-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px; /* Reduce padding to make the button shorter */
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff66a3;
+  background-image: linear-gradient(145deg, #ff66a3, #ff99cc);
+  border: 2px solid #ff66a3;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  line-height: 1; /* Set line-height to 1 for the button text */
+  align-self: center; /* Center the button within the heading */
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sponsor-button:hover {
+  background-color: #ff4d94;
+  background-image: linear-gradient(145deg, #ff4d94, #ff80b2);
+  border-color: #ff4d94;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .input-group {
   margin-bottom: 15px;
 }
+
 .input-group label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   color: #2c3e50;
 }
+
 .input-group input[type="text"] {
   width: calc(100% - 20px);
   padding: 12px 10px;
   border: 1px solid #bdc3c7;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   font-size: 14px;
   margin-bottom: 10px;
 }
+
 button {
   padding: 12px 0;
   border: none;
-  border-radius: 5px;
-  background-color: #3498db;
+  border-radius: var(--button-radius);
+  background-color: var(--primary-color);
   color: white;
   font-size: 16px;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s;
 }
+
 button:hover {
-  background-color: #2980b9;
+  background-color: var(--hover-color);
 }
+
 #urlList {
   margin-top: 20px;
 }
+
 #urlListPlaceholder {
   font-size: 16px;
-  color: #7f8c8d;
+  color: var(--placeholder-color);
   margin-top: 10px;
 }
+
 .url-item {
   background-color: #ffffff;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   padding: 10px 15px;
   display: flex;
   align-items: center;
@@ -62,6 +117,7 @@ button:hover {
   margin-bottom: 10px;
   transition: box-shadow 0.3s;
 }
+
 .url-item:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -94,9 +150,11 @@ button:hover {
   justify-content: center;
   transition: background-color 0.3s;
 }
+
 .url-item button:hover {
   background-color: #c0392b;
 }
+
 @media (min-width: 768px) {
   body {
     width: 500px;
@@ -106,13 +164,12 @@ button:hover {
 
 details {
   border: none;
-  /* padding: 0.5em 0.5em 0; */
   margin-bottom: 25px;
 }
 
 summary {
   background-color: transparent;
-  color: #3498db;
+  color: var(--primary-color);
   padding: 0;
   cursor: pointer;
   font-size: 16px;
@@ -138,32 +195,9 @@ code.search-box {
 }
 
 .defaultSelection {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .defaultSelection:after {
   content: " (default)";
-}
-
-.cute-github-sponsor-button {
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    background-color: #ff66a3;
-    background-image: linear-gradient(145deg, #ff66a3, #ff99cc);
-    border: 2px solid #ff66a3;
-    border-radius: 12px;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.cute-github-sponsor-button:hover {
-    background-color: #ff4d94;
-    background-image: linear-gradient(145deg, #ff4d94, #ff80b2);
-    border-color: #ff4d94;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }

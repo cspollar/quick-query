@@ -1,0 +1,28 @@
+{
+  "name": "quick-query",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Chrome Extension for quick URL templates.",
+  "scripts": {
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "prettier": "prettier --write .",
+    "compile": "npx tsc",
+    "compile:watch": "npx tsc --watch"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/chrome": "^0.0.270",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.9.0",
+    "prettier": "^3.2.2",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0"
+  },
+  "keywords": [
+    "chrome",
+    "extension"
+  ],
+  "author": "Chris",
+  "license": "GNU GPLv3"
+}
