@@ -1,0 +1,141 @@
+:root {
+  --primary-color: #3498db;
+  --hover-color: #2980b9;
+  --default-bg: #f7f8fa;
+  --text-color: #333;
+  --button-radius: 5px;
+  --border-radius: 5px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--default-bg);
+  margin: 0;
+  padding: 40px;
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 30px 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+ul {
+  text-align: left;
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--button-radius);
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--hover-color);
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  color: var(--text-color);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  table, th, td {
+    display: block;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: right;
+    padding-left: 50%;
+  }
+
+  th::before, td::before {
+    content: attr(data-title);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+#keywordDisplay {
+  font-weight: bold;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}

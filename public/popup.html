@@ -27,7 +27,7 @@
         </p>
         <p>
           The keyword must match an existing URL template; the search term will
-          replace <code>{KEY}</code> in the URL Template.
+          replace <code>{KEY}</code> in the <code>URL Template</code>.
         </p>
         <h3>Examples</h3>
 
@@ -41,9 +41,12 @@
         <code>https://example.com?q={KEY}</code>
         <div>becomes</div>
         <code>https://example.com?q=<i>mySearchTerm</i></code>
+
+        <button id="openOnboarding">More Help</button>
+        <hr>
       </div>
     </details>
-
+    <div id="urlListContainer"></div>
     <div class="input-group">
       <label for="keyword">Keyword</label>
       <input type="text" id="keyword" placeholder="example" />
@@ -59,6 +62,6 @@
     <div id="urlListPlaceholder">
       No URLs added yet. Add your first URL above.
     </div>
-    <script src="../js/popup.js"></script>
+    <script type="module" src="../js/popup.js"></script>
   </body>
 </html>

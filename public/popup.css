@@ -201,3 +201,13 @@ code.search-box {
 .defaultSelection:after {
   content: " (default)";
 }
+
+#openOnboarding {
+  margin: 20px 0;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}

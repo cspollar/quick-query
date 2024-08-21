@@ -1,11 +1,12 @@
-type UrlData = {
-  urls: Record<string, string>;
-  default: string;
-};
+import { getUrlData } from "./utils.js";
 
 const updateUrlList = async (): Promise<void> => {
   try {
     const data = await getUrlData();
+    if (!data) {
+      // Chrome doesn't have any data stored yet
+      return
+    }
     const urlList = document.getElementById("urlList") as HTMLElement;
     const urlListPlaceholder = document.getElementById(
       "urlListPlaceholder",
@@ -32,14 +33,6 @@ const updateUrlList = async (): Promise<void> => {
   } catch (error) {
     console.error("Failed to update URL list:", error);
   }
-};
-
-const getUrlData = (): Promise<UrlData> => {
-  return new Promise((resolve) => {
-    chrome.storage.sync.get(["urls", "default"], (items) =>
-      resolve(items as UrlData),
-    );
-  });
 };
 
 const createUrlItem = (
@@ -83,7 +76,8 @@ const createUrlItem = (
   deleteButton.addEventListener("click", async () => {
     try {
       const items = await getUrlData();
-      const urls = { ...items.urls };
+      const urls = { ...items?.urls };
+      console.log('urls80', urls)
       delete urls[keyword];
       chrome.storage.sync.set({ urls }, updateUrlList);
     } catch (error) {
@@ -125,7 +119,8 @@ const addUrl = async (): Promise<void> => {
 
   try {
     const items = await getUrlData();
-    const urls = { ...items.urls, [keyword]: url };
+    console.log('items', items)
+    const urls = { ...items?.urls, [keyword]: url };
     chrome.storage.sync.set({ urls }, updateUrlList);
   } catch (error) {
     console.error("Failed to add/update URL:", error);
@@ -133,5 +128,9 @@ const addUrl = async (): Promise<void> => {
 };
 
 document.getElementById("addUrl")?.addEventListener("click", addUrl);
+
+document.getElementById('openOnboarding')?.addEventListener('click', () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL('public/onboarding.html') });
+});
 
 updateUrlList();

@@ -3,7 +3,9 @@
   "name": "Quick Query",
   "version": "1.1",
   "description": "Quickly navigate to websites using URL Templates.",
-  "permissions": ["storage", "tabs"],
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "js/background.js"
   },
@@ -24,5 +26,8 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "options_ui": {
+    "page": "public/onboarding.html"
   }
 }
