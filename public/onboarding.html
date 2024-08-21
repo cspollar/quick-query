@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Query</title>
+    <link rel="stylesheet" href="onboarding.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="title">Welcome to Quick Query</h1>
+      <!-- <p>Use "URL Templating" to get you there faster.</p>
+      <div style="text-align: center">
+        <p>
+          <code class="search-box">
+            q
+            <span class="keyword">myKeyword</span>
+            <span class="searchTerm">mySearchTerm</span>
+          </code>
+        </p>
+      </div> -->
+      <p>Quickly replace Query Parameters on your most used websites.</p>
+      <p>
+        <code>https://example.com?q=<span class="searchTerm">{KEY}</span></code>
+        becomes
+        <code
+          >https://example.com?q=<span class="searchTerm"
+            >mySearchTerm</span
+          ></code
+        >
+      </p>
+    </div>
+
+    <div class="container">
+      <h2>Getting Started</h2>
+      <ol>
+        <li>
+          <h3>Add URLs</h3>
+          <ul>
+            <li>
+              <p>
+                Click the extension icon in the top-right corner of your browser
+                to manage your URLs.
+              </p>
+            </li>
+            <li>
+              <p>
+                Add, modify, or delete URL templates. Each
+                <code>URL template</code> is identified by a unique
+                <code><span class="keyword">keyword</span></code> to identify
+                it.
+              </p>
+            </li>
+            <li>
+              <p>Optionally Pin the Extension for quick access.</p>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>Use Quick Query</h3>
+          <ul>
+            <li>
+              Type <code>q</code> followed by a <code>keyword</code> and your
+              <code>search</code> term in the address bar. Notice quotation
+              marks allow multiple words to act as either a
+              <code>keyword</code> or <code>search term</code>.
+              <ul>
+                <li>
+                  <code
+                    >q <span class="keyword">myKeyword</span>
+                    <span class="searchTerm">mySearchTerm</span></code
+                  >
+                </li>
+                <li>
+                  <code
+                    >q <span class="keyword">"my Keyword"</span>
+                    <span class="searchTerm">"my search term"</span></code
+                  >
+                </li>
+                <li>
+                  <code
+                    >q <span class="keyword">myKeyword</span>
+                    <span class="searchTerm">"my search term"</span></code
+                  >
+                </li>
+                <li>
+                  <code
+                    >q <span class="keyword">myKeyword</span>
+                    <span class="searchTerm">my search term</span></code
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              If no keyword is entered, the default template is used.
+              <ul>
+                <li>
+                  <code>q <span class="searchTerm">mySearchTerm</span></code>
+                </li>
+                <li>
+                  <code>q <span class="searchTerm">my search term</span></code>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>View Results</h3>
+          <p>
+            After entering
+            <code class="search-box">
+              q <span class="keyword">myKeyword</span>
+              <span class="searchTerm">mySearchTerm</span>
+            </code>
+            in your URL Search Box,
+            <code class="searchTerm">mySearchTerm</code> will replace
+            <code class="mySearchTerm">{KEY}</code> in your
+            <code>URL Template</code> corresponding to your
+            <span class="keyword">Keyword</span>.
+          </p>
+          <p>Example:</p>
+          <ul>
+            <li>
+              <code
+                >https://example.com?q=<span class="searchTerm"
+                  >{KEY}</span
+                ></code
+              >
+              becomes
+              <code
+                >https://example.com?q=<span class="searchTerm"
+                  >mySearchTerm</span
+                ></code
+              >
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <div class="container">
+      <h2>How Quick Query Can Be Useful</h2>
+      <p>
+        Here are a handful of <i>untested</i> samples of to give you ideas of
+        how you may want to leverage this extension. Please look at a live URL
+        before creating your <code>URL Template</code>.
+      </p>
+
+      <ul>
+        <li>
+          <h3>Quick Access to Jira Issues:</h3>
+          <p>
+            <code
+              >https://yourcompany.atlassian.net/browse/<span class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Type <code>q atlas PROJ-123</code> in the
+            address bar to directly access Jira issue PROJ-123.
+          </p>
+        </li>
+        <li>
+          <h3>Search for GitHub Repositories:</h3>
+          <p>
+            <code
+              >https://github.com/search?q=<span class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Enter
+            <code>q "github search" react components</code> to search for
+            repositories related to React components on GitHub.
+          </p>
+        </li>
+        <li>
+          <h3>Find Bitbucket Repositories:</h3>
+          <p>
+            <code
+              >https://bitbucket.org/repo/all?name=<span class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Type <code>q bb frontend</code> to search
+            for repositories related to frontend development on Bitbucket.
+          </p>
+        </li>
+        <li>
+          <h3>Look Up Contacts in Salesforce:</h3>
+          <p>
+            <code
+              >https://login.salesforce.com/001/o?search=<span
+                class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Enter
+            <code>q "sf contact" John Doe</code> to quickly search for the
+            contact "John Doe" in Salesforce.
+          </p>
+        </li>
+        <li>
+          <h3>Find Opportunities in HubSpot CRM:</h3>
+          <p>
+            <code
+              >https://app.hubspot.com/contacts/<span class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Type <code>q hub 12345</code> to access
+            the details of opportunity 12345 in HubSpot CRM.
+          </p>
+        </li>
+        <li>
+          <h3>Access Tickets in Zendesk:</h3>
+          <p>
+            <code
+              >https://yourcompany.zendesk.com/agent/tickets/<span
+                class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Enter <code>q zen 56789</code> to view
+            Zendesk ticket #56789.
+          </p>
+        </li>
+        <li>
+          <h3>Search Issues in GitLab:</h3>
+          <p>
+            <code
+              >https://gitlab.com/search?search=<span class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Type <code>q bug report</code> to search
+            for issues related to bug reports on GitLab.
+          </p>
+        </li>
+        <li>
+          <h3>Navigate to Asana Tasks:</h3>
+          <p>
+            <code
+              >https://app.asana.com/0/search/<span class="searchTerm"
+                >{KEY}</span
+              ></code
+            >.
+          </p>
+          <p>
+            <strong>Use Case:</strong> Enter <code>q asana planning</code> to
+            find tasks related to project planning in Asana.
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>
+        Need help?
+        <a href="https://github.com/cspollar/quick-query/issues"
+          >Create a Support Issue</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+:root {
+  --primary-color: #3498db;
+  --hover-color: #2980b9;
+  --default-bg: #f7f8fa;
+  --text-color: #333;
+  --button-radius: 5px;
+  --border-radius: 5px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--default-bg);
+  margin: 0;
+  padding: 40px;
+  color: var(--text-color);
+}
+
+h1 {
+  text-align: center;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 30px 0;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+h3 {
+  font-size: medium;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+ul {
+  text-align: left;
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  color: purple;
+}
+
+code.search-box {
+  border: 0.1em dashed green;
+  border-radius: 2em;
+  padding: 0.5em;
+}
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--placeholder-color);
+}
+
+.searchTerm {
+  color: darkolivegreen;
+}
+
+.keyword {
+  color: rgb(255, 130, 35);
+}
+

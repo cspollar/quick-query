@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Match Found</title>
+    <link rel="stylesheet" href="keywordNotFound.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="title">Quick Query: No Match Found</h1>
+      <p>
+        Oops! The keyword you entered <span id="keywordDisplay"></span> doesn't match any saved URL templates.
+      </p>
+      <p>Here's what you can do:</p>
+      <ul>
+        <li>Double-check the spelling of your keyword. Letter Case matters. <code>ABC</code> & <code>abc</code> are different keywords.</li>
+        <li>
+          Make sure you've added the correct keyword to your list of URL
+          templates.
+        </li>
+        <li>
+          If you need help, check the <a href="#" id="openHelp">help page</a>.
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <h2>Available Keywords</h2>
+      <table id="keywordTable">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>URL Template</th>
+          </tr>
+        </thead>
+        <tbody id="keywordTableBody">
+          <!-- Dynamic content will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script type="module" src="../js/keywordNotFound.js"></script>
+  </body>
+</html>
