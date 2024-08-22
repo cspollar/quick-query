@@ -16,7 +16,6 @@ The keyword must match an existing URL template; the search term will replace `{
 
 <img width="300" alt="screenshot" src="https://github.com/user-attachments/assets/5c0f270a-1b14-4c9b-a025-b5122a8ed945">
 
-
 ## Examples
 
 ### Using a custom keyword:

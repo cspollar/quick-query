@@ -5,7 +5,7 @@ const updateUrlList = async (): Promise<void> => {
     const data = await getUrlData();
     if (!data) {
       // Chrome doesn't have any data stored yet
-      return
+      return;
     }
     const urlList = document.getElementById("urlList") as HTMLElement;
     const urlListPlaceholder = document.getElementById(
@@ -38,7 +38,7 @@ const updateUrlList = async (): Promise<void> => {
 const createUrlItem = (
   keyword: string,
   url: string,
-  defaultKeyword: string,
+  defaultKeyword?: string,
 ): HTMLElement => {
   const div = document.createElement("div");
   div.className = "url-item";
@@ -47,7 +47,11 @@ const createUrlItem = (
   radio.type = "radio";
   radio.id = keyword;
   radio.name = "defaultUrl";
-  radio.checked = keyword === defaultKeyword;
+  if (keyword === defaultKeyword || !defaultKeyword) {
+    radio.checked = true;
+    chrome.storage.sync.set({ default: keyword });
+  }
+
   radio.addEventListener("click", () => {
     chrome.storage.sync.set({ default: keyword }, updateUrlList);
   });
@@ -77,7 +81,7 @@ const createUrlItem = (
     try {
       const items = await getUrlData();
       const urls = { ...items?.urls };
-      console.log('urls80', urls)
+      console.log("urls80", urls);
       delete urls[keyword];
       chrome.storage.sync.set({ urls }, updateUrlList);
     } catch (error) {
@@ -119,7 +123,6 @@ const addUrl = async (): Promise<void> => {
 
   try {
     const items = await getUrlData();
-    console.log('items', items)
     const urls = { ...items?.urls, [keyword]: url };
     chrome.storage.sync.set({ urls }, updateUrlList);
   } catch (error) {
@@ -129,8 +132,8 @@ const addUrl = async (): Promise<void> => {
 
 document.getElementById("addUrl")?.addEventListener("click", addUrl);
 
-document.getElementById('openOnboarding')?.addEventListener('click', () => {
-  chrome.tabs.create({ url: chrome.runtime.getURL('public/onboarding.html') });
+document.getElementById("openOnboarding")?.addEventListener("click", () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL("public/onboarding.html") });
 });
 
 updateUrlList();

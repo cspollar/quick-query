@@ -3,7 +3,7 @@ type UrlData = {
   default: string;
 };
 
-export const getUrlData = (): Promise<UrlData|null> => {
+export const getUrlData = (): Promise<UrlData | null> => {
   try {
     return new Promise((resolve) => {
       chrome.storage.sync.get(["urls", "default"], (items) =>
@@ -11,6 +11,6 @@ export const getUrlData = (): Promise<UrlData|null> => {
       );
     });
   } catch {
-    return new Promise(() => null)
+    return new Promise(() => null);
   }
 };
