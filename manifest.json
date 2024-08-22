@@ -2,8 +2,10 @@
   "manifest_version": 3,
   "name": "Quick Query",
   "version": "1.3",
-  "description": "Quickly navigate to websites using URL Templates.",
-  "permissions": ["storage"],
+  "description": "Jump to custom pages using URL Templates. Type \"q mySearchTerm\" to visit \"https://example.com?q=mySearchTerm\"",
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "js/background.js"
   },
