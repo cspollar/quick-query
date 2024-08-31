@@ -1,7 +1,7 @@
-chrome.omnibox.onInputEntered.addListener(async (text: string) => {
-  const terms = splitInput(text);
+const getKeywordSearchTerm = async (text: string) => {
+  // Ensure we always return a keyword and a searchTerm.
 
-  if (terms.length === 0) return;
+  const terms = splitInput(text);
 
   let keyword;
   let searchTerm;
@@ -14,12 +14,20 @@ chrome.omnibox.onInputEntered.addListener(async (text: string) => {
     keyword = terms[0];
     searchTerm = terms.slice(1).join(" ");
   }
+  return { keyword: keyword, searchTerm: searchTerm };
+};
 
-  chrome.storage.sync.get(["urls", "default"], async (data) => {
-    const urlTemplate = data.urls?.[keyword];
+const EMPTY_DEFAULT_DESCRIPTION =
+  "🚀 <match>[keyword]</match> [searchTerm] <url>→ [Rendered URL Template]</url>";
+
+chrome.omnibox.onInputEntered.addListener(async (text: string) => {
+  const { keyword, searchTerm } = await getKeywordSearchTerm(text);
+
+  chrome.storage.sync.get("urls", async (urls) => {
+    const urlTemplate = urls[keyword];
 
     if (urlTemplate) {
-      const url = urlTemplate.replace(/\{[ ]*[kK][eE][yY][ ]*\}/, searchTerm);
+      const url = urlTemplate.replace(KEY_REGEX, searchTerm);
 
       try {
         const currentTab = await getCurrentTab();
@@ -93,6 +101,106 @@ chrome.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
     chrome.tabs.create({
       url: "public/onboarding.html",
+    });
+  }
+});
+
+const KEY_REGEX = /\{[ ]*[kK][eE][yY][ ]*\}/;
+
+const escapeXml = (unsafe: string) => {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case "'":
+        return "&apos;";
+      case '"':
+        return "&quot;";
+      default:
+        return c;
+    }
+  });
+};
+
+chrome.omnibox.onInputStarted.addListener(function () {
+  chrome.omnibox.setDefaultSuggestion({
+    description: EMPTY_DEFAULT_DESCRIPTION,
+  });
+});
+
+interface UrlStorage {
+  urls: { [key: string]: string }; // An object where each key is a string, and the value is also a string (the URL template)
+  default: string; // The default URL template
+}
+
+const getUrlDescription = (
+  keyword: string,
+  urlTemplate: string,
+  searchTerm: string,
+  regex = KEY_REGEX,
+  isDefault = false,
+) => {
+  const escapedUrl = escapeXml(
+    urlTemplate.replace(regex, encodeURIComponent(searchTerm)),
+  );
+  const escapedKeyword = escapeXml(keyword);
+  const escapedSearchTerm = escapeXml(searchTerm);
+  let description = "🚀 ";
+  if (isDefault) {
+    description = description + "<match>(Default)</match>";
+  } else {
+    description = description + `<match>${escapedKeyword}</match>`;
+  }
+  description =
+    description + ` ${escapedSearchTerm} <url> → ${escapedUrl}</url>`;
+  return description;
+};
+
+const getSuggestions = async (searchTerm: string) => {
+  if (!searchTerm) {
+    // Don't suggest items if there isn't a search term.
+    return [];
+  }
+
+  const storageData = (await chrome.storage.sync.get([
+    "urls",
+    "default",
+  ])) as UrlStorage;
+  const urls = storageData.urls || {};
+
+  const values = Object.entries(urls).map(([keyword, urlTemplate]) => ({
+    content: `${keyword} ${searchTerm}`,
+    description: getUrlDescription(keyword, urlTemplate, searchTerm),
+    deletable: false,
+  }));
+
+  return values;
+};
+
+chrome.omnibox.onInputChanged.addListener(async function (text, suggest) {
+  suggest(await getSuggestions(text));
+
+  const keyword = await getDefaultKeyword();
+
+  if (text && keyword) {
+    const urlTemplate = (await chrome.storage.sync.get("urls")).urls[keyword];
+    const description = getUrlDescription(
+      keyword,
+      urlTemplate,
+      text,
+      undefined,
+      true,
+    );
+    chrome.omnibox.setDefaultSuggestion({
+      description: description,
+    });
+  } else {
+    chrome.omnibox.setDefaultSuggestion({
+      description: EMPTY_DEFAULT_DESCRIPTION,
     });
   }
 });
