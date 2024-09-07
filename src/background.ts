@@ -23,7 +23,7 @@ const EMPTY_DEFAULT_DESCRIPTION =
 chrome.omnibox.onInputEntered.addListener(async (text: string) => {
   const { keyword, searchTerm } = await getKeywordSearchTerm(text);
 
-  chrome.storage.sync.get("urls", async (urls) => {
+  chrome.storage.sync.get("urls", async ({urls}) => {
     const urlTemplate = urls[keyword];
 
     if (urlTemplate) {
@@ -126,11 +126,11 @@ const escapeXml = (unsafe: string) => {
   });
 };
 
-chrome.omnibox.onInputStarted.addListener(function () {
-  chrome.omnibox.setDefaultSuggestion({
-    description: EMPTY_DEFAULT_DESCRIPTION,
-  });
-});
+// chrome.omnibox.onInputStarted.addListener(function () {
+//   chrome.omnibox.setDefaultSuggestion({
+//     description: EMPTY_DEFAULT_DESCRIPTION,
+//   });
+// });
 
 interface UrlStorage {
   urls: { [key: string]: string }; // An object where each key is a string, and the value is also a string (the URL template)
@@ -170,6 +170,7 @@ const getSuggestions = async (searchTerm: string) => {
     "urls",
     "default",
   ])) as UrlStorage;
+
   const urls = storageData.urls || {};
 
   const values = Object.entries(urls).map(([keyword, urlTemplate]) => ({
